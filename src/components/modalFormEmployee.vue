@@ -148,7 +148,7 @@
                         <label for="status">Estado: </label>
 
                         <label class="switch">
-                            <input v-model="information.status" type="checkbox">
+                            <input disabled v-model="information.status" type="checkbox">
                             <span class="slider round"></span>
                         </label>
                     </div>
@@ -177,7 +177,8 @@ export default {
                 "Tarjeta de Identidad"
             ],
             country: [],
-            area: ["Contabilidad", "Tecnologia", "Recursos Humanos", "Servicio al cliente", "Inventarios"]
+            area: ["Contabilidad", "Tecnologia", "Recursos Humanos", "Servicio al cliente", "Inventarios"],
+            regionName: ""
 
         }
     },
@@ -187,9 +188,14 @@ export default {
         closeModal() {
             this.$emit("closeModal", false);
         },
+
         validateInformation() {
             if (this.information.first_name && this.information.surname) {
-                const createEmail = this.information.first_name + this.information.surname + new Date().getTime() + "@cidenet.com.co"
+                if (this.information.country == 'Colombia' || this.information.country == 'United States') {
+                    this.regionName = this.information.country == 'Colombia' ? ".co" : ".us"
+                    console.log(this.regionName);
+                }
+                const createEmail = this.information.first_name + this.information.surname + new Date().getTime() + "@cidenet.com" + this.regionName
                 this.information.email = createEmail
             }
 
@@ -210,7 +216,7 @@ export default {
     mounted() {
         this.information = this.informationModal
         this.country = this.allCountry
-
+        this.information.status = true
     }
 
 }
