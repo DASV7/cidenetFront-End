@@ -103,7 +103,7 @@ export default {
 
 
     },
-    showInformationModal(action) {
+    showInformationModal() {
       this.showModal = !this.showModal
       this.actionModal = "create"
     },
