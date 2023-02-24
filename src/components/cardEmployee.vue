@@ -70,7 +70,9 @@
                 <i class="fa-solid fa-trash"></i>
             </button>
         </div>
-        <u class="cardUser__date">Fecha de ingreso:{{ information.date_register }}</u>
+        <u class="cardUser__date">Fecha de ingreso:{{ new Date(information.date_register).toLocaleDateString('es-AR', {
+            year: 'numeric', month: '2-digit', day: '2-digit'
+        }) }}</u>
     </div>
 </template>
 
