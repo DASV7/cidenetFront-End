@@ -51,6 +51,7 @@ import CardEmployee from '@/components/cardEmployee.vue'
 import FilterEmployee from '@/components/filterEmployee.vue'
 import modalFormEmployeeVue from '@/components/modalFormEmployee.vue'
 import Swal from "sweetalert2";
+import { country } from "../assets/js/country"
 
 export default {
   name: 'HomeView',
@@ -215,7 +216,11 @@ export default {
         .then(data => {
           this.country = data.map(e => e.name.common)
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+          console.log("la api no esta disponible se usara un archivo local");
+          error
+          this.country = country.countries.map(e => e.name)
+        });
     }
 
   },
